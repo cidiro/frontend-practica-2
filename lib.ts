@@ -40,11 +40,11 @@ export const addHero = async (hero: Hero): Promise<void> => {
     });
 };
 
-export const deleteHero = async (name: string): Promise<void> => {
+export const deleteHero = async (name: string, creator: string): Promise<void> => {
   await axios.delete("https://supermondongo.deno.dev/", {
     params: {
       name: name,
-      creator: "rodrigo"
+      creator: creator
     }
     })
     .then((response) => {

@@ -10,6 +10,7 @@ import * as $index from "./routes/index.tsx";
 import * as $new from "./routes/new.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $AddFormIsland from "./islands/AddFormIsland.tsx";
+import * as $HeroIsland from "./islands/HeroIsland.tsx";
 import * as $SearchIsland from "./islands/SearchIsland.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -25,6 +26,7 @@ const manifest = {
   },
   islands: {
     "./islands/AddFormIsland.tsx": $AddFormIsland,
+    "./islands/HeroIsland.tsx": $HeroIsland,
     "./islands/SearchIsland.tsx": $SearchIsland,
   },
   baseUrl: import.meta.url,

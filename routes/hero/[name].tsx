@@ -2,6 +2,7 @@ import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
 import { getHero } from "../../lib.ts";
 import HeroView from "../../components/HeroView.tsx";
 import { Hero } from "../../types.ts";
+import HeroIsland from "../../islands/HeroIsland.tsx";
 
 
 export const handler: Handlers = {
@@ -20,12 +21,9 @@ export const handler: Handlers = {
   },
 };
 
+
 const Page = (props: PageProps<Hero>) => {
-  return (
-    <div class="container">
-      <HeroView {...props.data} />
-    </div>
-  );
+  return <HeroIsland {...props.data} />;
 };
 
 export default Page;
