@@ -1,44 +1,36 @@
-import { FunctionComponent } from "preact";
+import { FunctionComponent, JSX } from "preact";
 import { useState } from "preact/hooks";
-import { getHeros } from "../lib.ts";
-import HerosView from "../components/HerosView.tsx";
-import { Hero } from "../types.ts";
-
 
 const SearchIsland: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
-  const [searchData, setSearchData] = useState<Hero[]>([]);
 
-  const fetchHeroData = async (name: string) => {
-    try {
-      const heroData = await getHeros(name);
-      setSearchData(heroData);
-    } catch (err) {
-      console.error(err);
-    }
+  const submitHandler = (
+    e: JSX.TargetedEvent<HTMLFormElement, Event>,
+  ) => {
+    e.preventDefault();
+    e.currentTarget.submit();
   };
 
   return (
-    <>
-      <div class="container">
-        <div class="wordForm">
-          <input
-            type="text"
-            placeholder="Type a name"
-            value={name}
-            onInput={(e) => {
-              setName(e.currentTarget.value);
-            }}
-          />
-          <button
-            onClick={() => fetchHeroData(name)}
-          >
-            Search
-          </button>
-        </div>
-      </div>
-      {searchData &&  <div class="flex-column"><HerosView heros={searchData} /></div>}
-    </>
+    <form
+      class="searchbar"
+      action="/search"
+      method="POST"
+      onSubmit={submitHandler}
+    >
+      <input
+        onInput={(e) => setName(e.currentTarget.value)}
+        type="text"
+        id="name"
+        name="name"
+      />
+      <button
+        type="submit"
+        class="btn"
+      >
+        Search
+      </button>
+    </form>
   );
 };
 

@@ -22,8 +22,7 @@ export const handler: Handlers = {
 
 const Page = (props: PageProps<Hero>) => {
   return (
-    <div class="flex-column">
-      <h1 class="mainTitle"><a href="/">Heros</a></h1>
+    <div class="container">
       <HeroView {...props.data} />
     </div>
   );

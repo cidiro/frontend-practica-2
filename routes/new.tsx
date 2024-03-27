@@ -1,18 +1,20 @@
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
-import SearchIsland from '../islands/SearchIsland.tsx';
+import AddFormIsland from '../islands/AddFormIsland.tsx';
 import { Hero } from '../types.ts';
 import { getHeros } from '../lib.ts';
 import HerosView from "../components/HerosView.tsx";
+import { addHero } from '../lib.ts';
 
 
 export const handler: Handlers = {
-  POST: async (req: Request, ctx: FreshContext<unknown, Hero[]>) => {
+  POST: async (req: Request, ctx: FreshContext<unknown, Hero>) => {
     try {
       const params = await req.formData();
-      const { name } = Object.fromEntries(params) as { name: string };
+      const { name, image, sound } = Object.fromEntries(params) as { 
+        name: string, image: string, sound: string };
       
-      const heroData = await getHeros(name);
-      return ctx.render(heroData);
+      await addHero({ name, image, sound });
+      return ctx.render({ name, image, sound });
     } catch(e) {
       console.error(e);
       return new Response("Error", { status: 500 });
@@ -21,15 +23,15 @@ export const handler: Handlers = {
 };
 
 
-const Page = (props: PageProps<Hero[]>) => {
+const Page = (props: PageProps<Hero>) => {
   return (
     <div class="container">
-      <SearchIsland />
-      {!!props.data && (
+      <AddFormIsland />
+      {/* {!!props.data && (
         <div class="flex-column">
           <HerosView heros={props.data} />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

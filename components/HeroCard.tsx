@@ -10,9 +10,10 @@ const HeroCard: FunctionComponent<HeroCardProps> = (props) => {
     <div class="characterContainer">
       <h2 class="text-overflow">{name}</h2>
       <img class="img-m half-rounded" src={image} />
-      <p>
-        <strong>Sound:</strong> {sound}
-      </p>
+      <audio controls>
+        <source src={sound} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
   );
 };

@@ -24,3 +24,33 @@ export const getHeros = async (name: string): Promise<Hero[]> => {
     );
     return response.data;
 };
+
+export const addHero = async (hero: Hero): Promise<void> => {
+  await axios.post("https://supermondongo.deno.dev/", {
+    name: hero.name,
+    image: hero.image,
+    sound: hero.sound,
+    creator: "rodrigo"
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+export const deleteHero = async (name: string): Promise<void> => {
+  await axios.delete("https://supermondongo.deno.dev/", {
+    params: {
+      name: name,
+      creator: "rodrigo"
+    }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};

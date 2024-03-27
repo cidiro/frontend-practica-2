@@ -4,9 +4,12 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
 import * as $hero_name_ from "./routes/hero/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $new from "./routes/new.tsx";
 import * as $search from "./routes/search.tsx";
+import * as $AddFormIsland from "./islands/AddFormIsland.tsx";
 import * as $SearchIsland from "./islands/SearchIsland.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -14,11 +17,14 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
     "./routes/hero/[name].tsx": $hero_name_,
     "./routes/index.tsx": $index,
+    "./routes/new.tsx": $new,
     "./routes/search.tsx": $search,
   },
   islands: {
+    "./islands/AddFormIsland.tsx": $AddFormIsland,
     "./islands/SearchIsland.tsx": $SearchIsland,
   },
   baseUrl: import.meta.url,
